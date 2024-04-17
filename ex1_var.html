@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./ex1_var.js"></script>
+</head>
+
+<body>
+
+    <!-- 인라인(inline) 방식 -->
+    inline 방식입니다 :
+    <button onclick="alert('inline 방식입니다. ')">클릭</button>
+    <!-- 인터널(internal) 방식-->
+    <!-- 
+        internal 방식은 body태그 또는 html태그가 끝나는곳에 작성하는것이 좋음
+    -->
+    <br>
+    internal 방식입니다 :
+    <button onclick="btnClick()">클릭</button>
+
+    <br>
+    external 방식입니다 :
+    <button onclick="externalClick()">클릭</button>
+
+</body>
+
+<script>
+    function btnClick() {
+        alert('internal 방식입니다.');
+    }
+
+//차이점1 : var = 중복 선언 가능 / let, const = 중복 선언 불가 
+    var a = "var 변수";
+    // let b = "let 변수";
+    // const c = "const 변수";
+
+    console.log(a);
+
+// 차이점-2 : 스코프 영역이 다름(var함수 스코프, let, const 블록 스코프)
+    function example() {
+        var a2 = 10;    //함수 스코프
+        let b2 = 20;    //블록 스코프
+        const c2 = 30;  //블록 스코프
+
+        if (true) {
+            var a2 = 100;   
+            let b2 = 200;
+            const c2 = 300;
+
+            console.log("if문 : ", a2, b2, c2);
+            //100, 200, 300
+        }
+        console.log("if문 밖 : ", a2, b2, c2);
+        //100, 20, 30
+    }
+
+    example();
+
+
+    //차이점-3 : 호이스팅 여부
+    //var는 생성 단계(변수 선언) -> 실행 단계(변수 초기화)를 거치기 때문에 에러 발생 X 
+    //자바스크립트의 기본값 = undefined
+    console.log(a3);    //undefined
+    var a3="var 변수";
+    console.log(a3);
+
+    //let, const는 생성단계(변수선언)만 거치기 때문에 에러가 발생
+    //초기화가 되지 않았기 때문에
+    //referenceError ; Cannot access 'b3' before initialization
+    // console.log(b3);    //referenceError
+    let b3="let 변수";
+    let b4;
+    console.log(b4);
+
+    //차이점-4 : const = 상수
+    const c3 = "const 변수";
+    console.log(c3);
+
+    c3 = "값 변경";
+    console.log(c3);
+
+</script>
+
+</html>

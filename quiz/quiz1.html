@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>Q1. 사용자의 이름을 입력받고, 확인 버튼을 누르면 "OOO님 환영합니다"를 alert으로 출력하세요.</h3>
+    <div><input type="text" id="inputName" placeholder="이름 입력하기"></div>
+    <button onclick="inputName()">확인</button>
+    <hr>
+
+    <h3>Q2. 몇단을 출력할지 입력받고, 확인 버튼을 누르면 innerHTML을 활용해 구구단의 합계를 div 태그에 출력하세요.</h3>
+    <input type="text" id="input-gugudan" placeholder="몇단인지 입력하기">
+    <button onclick="guguPlus()">확인</button>
+    <div id="gugudan">0</div>
+    <hr>
+
+    <h3>Q3. 사용자의 이름과 나이를 출력입력 받고, 확인 버튼을 누르면
+        innerHTML을 활용해 div 태그에 환영 메시지를 출력하세요.</h3>
+    <p>18세 미만 : "OOO님, 안녕하세요! 미성년자 분이시군요."</p>
+    <p>18세 이상 : "OOO님, 안녕하세요! 성인 분이시군요."</p>
+    <p style="color: red;">※ 단, 나이에 숫자를 입력하지 않을 경우 "나이를 유효한 숫자로 입력하세요." 출력</p>
+    <p style="color: red;">※ isNaN(나이)을 활용하여 숫자인지 확인할 수 있습니다.</p>
+
+    <div>
+        <input type="text" id="input-name" placeholder="이름 입력하기">
+        <input type="text" id="input-age" placeholder="나이 입력하기">
+        <button onclick="inputInfo()">입력</button>
+    </div>
+    <div id="welcome">0</div>
+
+    <hr>
+
+    <h3>Q4. 사용자로부터 숫자를 하나 입력받아 확인 버튼을 누르면
+        홀수인지 짝수인지 판별하고, inerrHTML을 활용해 div 태그에 출력하세요.
+    </h3>
+    <input type="text" id="input-num" placeholder="숫자 입력하기">
+    <button onclick="inputNumber()">입력</button>
+    <div id="number"></div>
+    <p>출력 : 입력한 숫자는 짝수입니다.</p>
+    <p>출력 : 입력한 숫자는 홀수입니다.</p>
+    <p style="color: red;">※ 홀수는 빨간색, 짝수는 파란색으로 출력</p>
+    <hr>
+
+
+</body>
+
+<script>
+    function inputName() {
+        const nameValue = document.getElementById("inputName").value;
+        alert(nameValue + "님 환영합니다.");
+    }
+
+    function guguPlus() {
+        const gugudanPlus = document.getElementById("input-gugudan").value;
+        const resultGugudan = document.getElementById("gugudan");
+        // let x = 0;
+        // for (let i = 0; i <= 9; i++) {
+        //     x = x + gugudanPlus * i;
+        // }
+        resultGugudan.innerHTML = gugudanPlus*45;
+
+        resultGugudan.innerHTML = x;
+    }
+
+    function inputInfo() {
+        const inputName = document.getElementById("input-name").value;
+        const inputAge = document.getElementById("input-age").value;
+
+        const outPut = document.getElementById("welcome");
+
+
+        if (inputAge >= 18 && isNaN(inputAge) == false) {
+            outPut.innerHTML = inputName + "님, 안녕하세요! 성인 분이시군요!";
+        } else if (inputAge < 18 && isNaN(inputAge) == false) {
+            outPut.innerHTML = inputName + "님, 안녕하세요! 미성년자 분이시군요!";
+        } else {
+            outPut.innerHTML = "숫자를 제대로 입력해주세요!";
+        }
+    }
+
+    function inputNumber(){
+        const inputNum = document.getElementById("input-num").value;
+        const resultNum = document.getElementById("number");
+        
+        if(inputNum%2 == 0){
+            resultNum.style.color = "blue";
+            resultNum.innerHTML = "입력한 숫자는 짝수입니다. ";
+        }else if(inputNum%2==1){
+            resultNum.style.color = "red";
+            resultNum.innerHTML = "입력한 숫자는 홀수입니다. ";
+        }
+    }
+</script>
+
+</html>
