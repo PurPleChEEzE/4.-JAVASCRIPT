@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="arrayTest()">배열 사용</button>
+    <div id="test-text"></div>
+
+    <script>
+        function arrayTest(){
+            let arr = ["Hello", "World", 999, true, [10, 20, 30]];
+
+            const textText = document.getElementById("test-text");
+
+            for(let i=0; i<arr.length; i++){
+                textText.innerHTML += arr[i] + "&nbsp;";
+            }
+        }
+
+
+    </script>
+
+    <hr>
+
+    <button onclick="arrayTest2()">배열 선언</button>
+    <div id="result"></div>
+
+    <script>
+        function arrayTest2(){
+            const result = document.getElementById("result")
+
+            let arr1 = new Array();
+
+            console.log(arr1.length);
+            arr1[0] = "홍길동";
+            console.log(arr1.length);
+            console.log(arr1[50]);
+
+            let arr2 = new Array(3);
+            console.log(arr2.length);
+            arr2[0] = "A";
+            arr2[1] = "A";
+            arr2[2] = "A";
+            arr2[3] = "A";
+            console.log(arr2.length);
+
+            let arr3 = [];
+            console.log(arr3.length);
+            arr3[0] = "B";
+            console.log(arr3.length);
+
+            let arr4 = new Array(1, 5);
+            console.log(arr4.length);
+        }
+    </script>
+    <hr>
+    <button onclick="watchMenu()">메뉴 보기</button>
+    <input type="text" id="input-menu" placeholder="점심 메뉴를 입력해주세요. ">
+    <button onclick="selectMenu()">제출</button>
+    <div id="resultMenu"></div>
+
+    <script>
+        //사용자가 입력한 메뉴의 인덱스를 반환
+        function selectMenu(){
+            let menuList = ["국밥", "짬뽕", "만두국", "멸치국수", "초밥", "돈까스"];
+            //1. 사용자가 입력한 값 가져오기
+
+            const menuName = document.getElementById("input-menu").value;
+            const resultName = document.getElementById("resultMenu");
+            //2. 사용자가 입력한 메뉴가 menuList 배열의 몇 번 인덱스에 존재하는지
+            //  indexOf("값")
+
+            console.log("indexOf() : " + menuList.indexOf(menuName));
+
+            //3. 찾은 인덱스를 resultMenu에 출력
+            resultName.innerHTML = menuList.indexOf(menuName)+1;
+        }
+        function watchMenu(){
+            let menuList = ["국밥", "짬뽕", "만두국", "멸치국수", "초밥", "돈까스"];
+        }
+    </script>
+
+<hr>
+    <script>
+        function selectMenuFunc(){
+            let menuList = ["국밥", "짬뽕", "만두국", "멸치국수", "초밥", "돈까스"];
+            const randomMenu = Math.ceil(Math.random()*10);
+
+            if(randomMenu > 5){
+                console.log("메뉴 없음");
+            }else {
+                console.log(menuList[randomMenu]);
+            }
+
+        }
+    </script>
+
+    <h1>배열 관련 내장함수</h1>
+    <ul>
+        <li>배열.indextOf("값") : 해당하는 값이 있는 요소의 인덱스 반환, 없다면 -1</li>
+        <li>배열.concat(배열, 배열, ...) : 배열 합치기</li>
+        <li>배열.reverse() : 배열의 값을 역순으로 재배치</li>
+        <li>배열.sort() : 오름차순 정렬</li>
+        <li>배열.push("값") : 배열의 맨 뒤에 요소 추가 -> 배열의 크기를 반환</li>
+        <li>배열.pop() : 배열의 맨 뒤 요소 제거 -> 제거된 요소를 반환</li>
+        <li>배열.unshift("값") : 배열의 맨 앞에 요소 추가 -> 배열의 크기를 반환</li>
+        <li>배열.shift() : 배열의 맨 앞 요소 제거 -> 제거된 요소를 반환</li>
+        <li>배열.slice(시작인덱스, 끝인덱스) : 해당하는 인덱스의 요소 추출</li>
+        <li>배열.join(구분자) : 구분자를 기준으로 요소를 합침</li>
+    </ul>
+
+    <script>
+        let arrList = ["A", "B", "C", "D"];
+
+        console.log(arrList.indexOf("A"));
+        console.log(arrList.indexOf("ABCD"));
+
+        console.log(arrList.reverse());
+
+        console.log(arrList.sort());
+        console.log(arrList.push("E"));
+        console.log(arrList.pop());
+
+        console.log(arrList.slice(1,3));
+
+        console.log(arrList.join());
+    </script>
+
+
+
+</body>
+</html>
