@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 1. 사용자로부터 숫자를 입력 받아, 입력된 숫자의 절댓값을 계산하여 div 태그에 출력하세요. -->
+    <input type="text" id="numInput" placeholder="숫자 입력">
+    <button onclick="getAbs()">입력</button>
+    <div id="absResult">0</div>
+
+    <script>
+        function getAbs(){
+            const inputNumber = document.getElementById("numInput").value;
+            const resultNumber = document.getElementById("absResult");
+
+            resultNumber.innerHTML = Math.abs(inputNumber);
+        }
+    </script>
+<hr>
+    <!-- 2. 사용자로부터 문자열을 입력 받고, 해당 문자열의 길이를 계산하여 div 태그에 출력하세요. -->
+    <input type="text" id="textInput" placeholder="문자열 입력">
+    <button onclick="getLength()">입력</button>
+    <div id="lengthResult">0</div>
+
+
+    <script>
+        function getLength(){
+            const inputNumber = document.getElementById("textInput").value;
+            console.log(inputNumber);
+            lengthis = inputNumber.length;
+            console.log(lengthis);
+            const resultNumber = document.getElementById("lengthResult");
+
+            resultNumber.innerHTML = lengthis;
+        }
+    </script>
+<hr>
+    <!-- 3. 사용자로부터 세 개의 숫자를 입력 받아, 입력된 숫자들의 합을 계산하여 div 태그에 출력하세요. -->
+    <input type="text" id="plusInput1" placeholder="숫자 입력">
+    <input type="text" id="plusInput2" placeholder="숫자 입력">
+    <input type="text" id="plusInput3" placeholder="숫자 입력">
+    <button onclick="getPlus()">입력</button>
+    <div id="plusResult">0</div>
+
+    <script>
+        function getPlus(){
+            const inputNumber1 = parseInt(document.getElementById("plusInput1").value);
+            const inputNumber2 = parseInt(document.getElementById("plusInput2").value);
+            const inputNumber3 = parseInt(document.getElementById("plusInput3").value);
+
+            const resultNumber = document.getElementById("plusResult");
+
+            resultNumber.innerHTML = inputNumber1 + inputNumber2 + inputNumber3;
+        }
+    </script>
+<hr>
+    <!-- 4. 사용자로부터 두 개의 숫자를 입력 받아, 두 숫자 중 작은 숫자를 찾아 div 태그에 출력하세요. -->
+    <input type="text" id="minInput1" placeholder="숫자 입력">
+    <input type="text" id="minInput2" placeholder="숫자 입력">
+    <button onclick="getMin()">입력</button>
+    <div id="minResult">0</div>
+
+    <script>
+        function getMin(){
+        const inputNumber1 = document.getElementById("minInput1").value;
+        const inputNumber2 = document.getElementById("minInput2").value;
+        const resultNumber = document.getElementById("minResult");
+
+        if(inputNumber1 < inputNumber2){
+            resultNumber.innerHTML = inputNumber1;
+        }else if(inputNumber1 > inputNumber2){
+            resultNumber.innerHTML = inputNumber2;
+        }else if(inputNumber1 == inputNumber2){
+            resultNumber.innerHTML = "두개의 값이 같습니다";
+        }
+    }
+    </script>
+    <hr>
+    <!-- 5. 사용자로부터 문자열을 입력 받아, 해당 문자열을 모두 대문자로 변환하여 div 태그에 출력하세요. -->
+
+    <!-- console.log("toUpperCases() : " + helloWorld.toUpperCase()); -->
+    <input type="text" id="upperInput" placeholder="문자열 입력">
+    <button onclick="getUpper()">입력</button>
+    <div id="upperResult">0</div>
+
+    <script>
+        function getUpper(){
+            const inputNumber = document.getElementById("upperInput").value;
+            const resultNumber = document.getElementById("upperResult");
+            resultNumber.innerHTML = inputNumber.toUpperCase();
+        }
+    </script>
+    <hr>
+    <!-- 6. 사용자로부터 두 개의 숫자를 입력 받아, 두 숫자의 차이를 계산하여 div 태그에 출력하세요. -->
+    <input type="text" id="numInput1" placeholder="숫자 입력">
+    <input type="text" id="numInput2" placeholder="숫자 입력">
+    <button onclick="getNum()">입력</button>
+    <div id="numResult">0</div>
+
+    <script>
+        function getNum() {
+
+            const inputNumber1 = parseInt(document.getElementById("numInput1").value);
+            const inputNumber2 = parseInt(document.getElementById("numInput2").value);
+            const resultNumber = document.getElementById("numResult");
+            numberC = inputNumber1 - inputNumber2;
+            console.log(numberC);
+
+            resultNumber.innerHTML = Math.abs(numberC);
+        }
+    </script>
+
+    <hr>
+
+    <!-- 7. 사용자로부터 숫자를 입력 받고, 해당 숫자가 양수인지, 음수인지, 또는 0인지 판별하여 결과를 alert으로 출력하세요. -->
+    <input type="text" id="intInput" placeholder="숫자 입력">
+    <button onclick="getInt()">입력</button>
+    <br><br><br>
+    <script>
+        function getInt() {
+
+            // 프롬프트 코드
+            // let inputType = prompt("숫자 입력");
+
+            // if (inputType < 0) {
+            //     alert("음수입니다. ");
+            // } else if (inputType == 0) {
+            //     alert("0입니다. ");
+            // } else if (inputType > 0) {
+            //     alert("양수입니다. ");
+            // } else {
+            //     alert("숫자를 입력하세요. ");
+            // }
+            // getelementbyid 코드
+            const inputNumber = document.getElementById("intInput").value;
+            if (inputNumber < 0) {
+                alert("음수입니다. ");
+            } else if (inputNumber == 0) {
+                alert("0입니다. ");
+            } else if (inputNumber > 0) {
+                alert("양수입니다. ");
+            } else {
+                alert("숫자를 입력하세요. ");
+            }
+        }
+    </script>
+
+    <hr>
+    <!-- 8. 사용자로부터 두 개의 숫자를 입력 받아 더한 결과를 alert으로 출력하세요. -->
+    <input type="text" id="plus2Input1" placeholder="숫자 입력">
+    <input type="text" id="plus2Input2" placeholder="숫자 입력">
+    <button onclick="plusNum()">입력</button>
+
+    <script>
+        function plusNum(){
+            const inputNumber1 = parseInt(document.getElementById("plus2Input1").value);
+            const inputNumber2 = parseInt(document.getElementById("plus2Input2").value);
+
+            getPlusNum = inputNumber1 + inputNumber2;
+            alert("더한 값은 " + getPlusNum + " 입니다. ");
+        }
+    </script>
+    <br><br><br>
+    <!-- 9. 사용자로부터 세 개의 숫자를 입력 받아 가장 큰 숫자를 alert으로 출력하세요. -->
+    <input type="text" id="maxInput1" placeholder="숫자 입력">
+    <input type="text" id="maxInput2" placeholder="숫자 입력">
+    <input type="text" id="maxInput3" placeholder="숫자 입력">
+    <button onclick="maxNum()">입력</button>
+
+    <script>
+        function maxNum(){
+            const inputNumber1 = document.getElementById("maxInput1").value;
+            const inputNumber2 = document.getElementById("maxInput2").value;
+            const inputNumber3 = document.getElementById("maxInput3").value;
+            
+
+            let arr = [];
+            arr[0] = inputNumber1;
+            // console.log(arr[0]);
+            
+            arr[1] = inputNumber2;
+            arr[2] = inputNumber3;
+
+            let result = arr[0];
+            // console.log(result);
+            for(let i = 0; i<arr.length; i++){
+                if(result < arr[i]){
+                    result = arr[i];
+                    // console.log(result);
+                }
+            }
+            
+            alert("가장 큰 값은 " + result + " 입니다. ");
+        }
+    </script>
+</body>
+</html>

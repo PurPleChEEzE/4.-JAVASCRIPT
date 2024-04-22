@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .color-box {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            
+        }
+    </style>
+</head>
+<body>
+<!-- 1. 버튼을 클릭할 때 마다 div 박스의 색깔을 red->blue->red 로 바꾸세요 -->
+
+<button onclick="colorChange()">색상 변경</button>
+<div id="class-box-id" class="color-box" style="background-color: white;"></div>
+<script>
+    
+    
+
+    
+    const colorChange = function(){
+
+        const currentColor = document.getElementById("class-box-id");
+        colorNow = currentColor.style.backgroundColor;
+        console.log(currentColor);
+        console.log(colorNow);
+
+        let newColor;
+        if(colorNow == "red"){
+            newColor = "blue";
+        }else{
+            newColor = "red";
+        }
+        console.log(newColor) ;
+
+        currentColor.style.backgroundColor = newColor;
+        
+    }
+    // function colorChange(){
+    //     const currentColor = document.getElementById("class-box-id");
+    //     colorNow = currentColor.style.backgroundColor;
+    //     console.log(currentColor);
+    //     console.log(colorNow);
+
+    //     let newColor;
+    //     if(colorNow == "red"){
+    //         newColor = "blue";
+    //     }else{
+    //         newColor = "red";
+    //     }
+    //     console.log(newColor) ;
+
+    //     currentColor.style.backgroundColor = newColor;
+        
+    // }
+</script>
+
+<hr>
+<!-- 2. 1~(사용자가 입력한 숫자)에서 3과 5의 공배수를 출력하세요
+ex. 사용자가 100을 입력하면 1~100에서 3과 5의 공배수 출력  -->
+<input type="text" id="multiNum" placeholder="숫자를 입력하세요.">
+<button onclick="mulResult()">공배수 출력</button>
+<div id="resultNum"></div>
+
+<script>
+    const mulResult = function(){
+        const inputNumber = document.getElementById("multiNum").value;
+        // .log(inputNumber);
+        const resultNumber = document.getElementById("resultNum");
+
+        for(let i = 0; i<=inputNumber; i++){
+            if(i%3 == 0 && i%5 ==0){
+                resultNumber.innerHTML += i + "&nbsp;"
+            }
+        }
+    }
+    // function mulResult(){
+    //     const inputNumber = document.getElementById("multiNum").value;
+    //     // console.log(inputNumber);
+    //     const resultNumber = document.getElementById("resultNum");
+
+    //     for(let i = 0; i<=inputNumber; i++){
+    //         if(i%3 == 0 && i%5 ==0){
+    //             resultNumber.innerHTML += i + "&nbsp;"
+    //         }
+    //     }
+    // }
+</script>
+<hr>
+<!-- 3. 사용자가 입력한 숫자의 팩토리얼을 출력하세요.
+   -> 10 팩토리얼 : 1*2*3*4*5*6*7*8*9*10
+   -> 값 : 3628800 -->
+<input type="text" id="factNum" placeholder="숫자를 입력하세요.">
+<button onclick="getFacto()">팩토리얼 출력</button>
+<div id="factResult" ></div>
+
+<script>
+    const getFacto = () =>{
+        const inputNumber = document.getElementById("factNum").value;
+        const resultNumber = document.getElementById("factResult");
+        // console.log(inputNumber);
+        let result = 1;
+        for(let i = 1; i<= inputNumber; i++){
+            result = result*i
+        }
+        resultNumber.innerHTML = result;
+    }
+</script>
+<hr>
+<!-- 4. 사용자로부터 국어, 영어, 수학, 과학 점수를 입력받으세요.
+   -> 평균과 합계를 출력하세요. -->
+<input type="text" id="korScore" placeholder="국어 점수를 입력하세요.">
+<input type="text" id="engScore" placeholder="영어 점수를 입력하세요.">
+<input type="text" id="matScore" placeholder="수학 점수를 입력하세요.">
+<input type="text" id="sciScore" placeholder="과학 점수를 입력하세요.">
+<br>
+<button onclick="allNum()">합계 출력</button>
+<div id="allResult"></div> <!-- 합계가 출력되는 div-->
+
+<button onclick="avgNum()">평균 출력</button>
+<div id="avgResult"></div> <!-- 평균이 출력되는 div-->
+
+<script>
+    const allNum = () => {
+        const inputKor = parseInt(document.getElementById("korScore").value);
+        
+        const inputEng = parseInt(document.getElementById("engScore").value);
+        const inputMat = parseInt(document.getElementById("matScore").value);
+        const inputSci = parseInt(document.getElementById("sciScore").value);
+        const resultNum = document.getElementById("allResult");
+        
+        resultNum.innerHTML = (inputKor + inputEng + inputMat + inputSci);
+    }
+
+
+    function avgNum(){
+        const inputKor = parseInt(document.getElementById("korScore").value);
+        
+        const inputEng = parseInt(document.getElementById("engScore").value);
+        const inputMat = parseInt(document.getElementById("matScore").value);
+        const inputSci = parseInt(document.getElementById("sciScore").value);
+        const resultNum = document.getElementById("avgResult");
+
+        resultNum.innerHTML = (inputKor + inputEng + inputMat + inputSci)/4;
+    }
+
+
+    
+</script>
+</body>
+</html>
