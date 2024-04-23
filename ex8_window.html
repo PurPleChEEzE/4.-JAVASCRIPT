@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>window 객체 : 자바스크립트 최상위 객체 </p>
+    <ol>
+        <li>BOM(Browser Object Model) : 브라우저의 주소창과 관련되어 있음</li>
+        <li>DOM(Document Object Model) : 그 외 나머지 모두(HTML 요소)</li>
+    </ol>
+
+    <h3>window.open()</h3>
+    <button onclick="windowTest1()">실행</button>
+    <script>
+        function windowTest1(){
+            window.open("https://www.naver.com", "네이버");
+        }
+    </script>
+
+    <hr>
+    <h3>타이머에 관련된 함수</h3>
+    <ol>
+        <li>setTimeout</li>
+        <li>setInterval</li>
+    </ol>
+
+    <button onclick="windowTest2()">셋타임아웃</button>
+
+    <script>
+        function windowTest2(){
+            // setTimeout(function() {
+            //     alert("2초가 지났습니다.");
+            // }, 2000);
+
+
+            const newNaver = window.open("https://naver.com");
+            newNaver.alert("3초뒤 사라집니다");
+
+            setTimeout(function(){
+                newNaver.close();
+            }, 3000);
+        }
+    </script>
+
+    <button onclick="windowTest3()">인터벌</button>
+    <div id="test-3"></div>
+    <script>
+        function windowTest3(){
+            const result = document.getElementById("test-3");
+            const intervalConsole = setInterval(function(){
+                const date = new Date();
+                console.log(date);
+                result.innerHTML = date;
+            },1000);
+            
+            // setTimeout(function(){
+            //     clearInterval(intervalConsole);
+            // },10000);
+        }
+    </script>
+
+    <h3>BOM( Browser Object Model)</h3>
+    <ol>
+        <li>location 객체</li>
+        <li>screen 객체</li>
+        <li>navigator 객체</li>
+        <li>history 객체</li>
+    </ol>
+
+    <button onclick="location.href='https://www.naver.com'">로케이션</button>
+    <button onclick="location.assign='https://www.naver.com'">로케이션2</button>
+    <button onclick="location.replace='https://www.naver.com'">로케이션3</button>
+
+    <hr>
+
+    <button onclick="console.log(screen)">스크린</button>
+    <button onclick="console.log(navigator)">네비게이터</button>
+    <button onclick="console.log(history)">히스토리</button>
+
+    <hr>
+    <h3>DOM(Document Object Model)</h3>
+    <p style="border: 1px solid black;">
+        노드(Node) : HTML에 있는 각각의 태그 <br>
+        -요소 노드(Element Node) : 태그 그 자체를 의미 <br>
+        -텍스트 노드(Text Node) : 태그 안에 있는 텍스트를 의미 <br>
+
+        -텍스트 노드가 존재하는 요소 : div, a, h1, p, pre, span, ... <br>
+            <!-- ex) <div>텍스트</div>, <a href="#">텍스트</a>, <h1>텍스트</h1> -->
+        -텍스트 노드가 존재하지 않는 요소 : img, input, br, ... <br>
+            <!-- ex) <img src="#" alt="#">, <input type="text"> <br> -->
+
+    </p>
+    
+
+    <button onclick="createEle()">요소 생성</button>
+    <div id="result-3"></div>
+
+    <script>
+        function createEle(){
+            const result = document.getElementById("result-3");
+            //방법1
+            result.innerHTML = "<p>태그 생성중 </p>";
+
+            //방법2
+            //document 메소드를 사용해 요소 객체 생성
+
+            //const elementNode = <h3></h3>
+            const elementNode = document.createElement("h3");
+
+            //const textNode = "안녕하세요";
+            const textNode = document.createTextNode("안녕하세요");
+
+            elementNode.appendChild(textNode);
+            result.appendChild(elementNode);
+
+            //<img src=>
+            const img = document.createElement("img");
+
+            img.src = "https://flexible.img.hani.co.kr/flexible/normal/970/777/imgdb/resize/2019/0926/00501881_20190926.JPG";
+            img.width = "200";
+            img.height = "200";
+
+            result.appendChild(img);
+        }
+    </script>
+
+    <button onclick="createEle2()">요소 생성</button>
+    <div id="result-4">
+        <span id="spanId">
+
+        </span>
+    </div>
+
+    <script>
+        let num =1;
+        function createEle2(){
+            
+            
+            const result = document.getElementById("result-4");
+            const spanId = document.getElementById("spanId");
+            const elementNode = document.createElement("h");
+            elementNode.style.color = "blue";
+            elementNode.style.fontSize = "16px";
+            const textNode = document.createTextNode("안녕하세요 " + num + ", ");
+            console.log(textNode);
+            
+            // result.innerHTML = (elementNode + elementNode2);
+
+            
+
+            elementNode.appendChild(textNode);
+            spanId.appendChild(elementNode);
+            num = num+1;
+            
+        }
+    </script>
+
+    <input type="text" id="input-word">
+    <button id="submit">제출</button>
+    <ul id="list">
+        
+    </ul>
+    
+
+    <script>
+        const inputWords = document.getElementById("input-word");
+        const submitWords = document.getElementById("submit");
+        const deleteBtn = document.getElementById("delete");
+        
+        
+        
+        inputWords.addEventListener('keyup', function(){
+            if(event.keyCode ===13){
+                submitWords.click();
+            }
+        })
+        
+        submitWords.addEventListener('click', function(){
+            const inputWords = document.getElementById("input-word");
+            console.log(inputWords);
+            const list = document.getElementById("list");
+            const result = document.createElement("li");
+            const deleteBtn = document.createElement("button");
+            result.innerHTML = inputWords.value;
+            
+            deleteBtn.innerHTML = "x";
+            deleteBtn.addEventListener('click', function(){
+                list.removeChild(result);
+                
+            })
+            result.appendChild(deleteBtn);
+            list.appendChild(result);
+            inputWords.value = "";
+
+            
+        })
+        
+        
+        
+    </script>
+    
+
+</body>
+</html>
