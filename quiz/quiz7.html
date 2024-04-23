@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        영어 소문자 숫자만 사용가능 6자리이상 20자리이하
+    -->
+    <label for="id">아이디 : </label>
+    <input type="text" id="id" onkeyup="isValidId()">
+    <span id="id-msg"></span>
+
+    <script>
+        function isValidId(){
+            const inputId = document.getElementById("id").value;
+            const msg = document.getElementById("id-msg");
+
+            //\s : 공백문자
+            //[^\s@] : 공백문자, @ 제외하고 나머지 문자 다 가능
+            const idPattern = /^[a-z0-9]{6,20}$/;
+
+            if(idPattern.test(inputId)){
+                msg.innerHTML = "사용가능한 아이디입니다";
+                msg.style.color = "green";
+            }else{
+                msg.innerHTML = "사용 불가능한 아이디입니다."
+                msg.style.color = "red";
+            }
+        }
+
+        
+    </script>
+    <br>
+
+    <!-- 
+        소문자 또는 대문자 최소 1개 이상
+        특수문자 최소 1개 이상
+        6자리 이상 20자리 이하
+     -->
+    <label for="password">비밀번호 : </label>
+    <input type="password" id="password" onkeyup="isValidPassword()">
+    <span id="password-msg"></span>
+
+    <script>
+        function isValidPassword(){
+            const inputPass = document.getElementById("password").value;
+            const msg = document.getElementById("password-msg");
+            // [a-zA-Z~!@#$%^&*-_=+]   
+            //?= : 전방탐색 
+            //.* : 아무문자가 1개가 있거나 없음
+            const passPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*_+-]){6,20}/;
+
+            
+
+            if(passPattern.test(inputPass)){
+                msg.innerHTML = "사용가능한 비밀번호입니다";
+                msg.style.color = "green";
+            }else{
+                msg.innerHTML = "사용 불가능한 비밀번호입니다."
+                msg.style.color = "red";
+            }
+
+            return new Promise(function(resolve, reject){
+                resolve(inputPass);
+            })
+        }
+    </script>
+    <br><br>
+    <label for="password-check">비밀번호 : </label>
+    <input type="password" id="password-check" onkeyup="samePassword()">
+    <span id="pscheck-msg"></span>
+
+    <script>
+        async function samePassword(){
+            const inputPass = document.getElementById("password-check").value;
+            const msg = document.getElementById("pscheck-msg");
+            const passCheckPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*_+-]){6,20}/;
+
+            if(passCheckPattern.test(inputPass)){
+                
+                const result = await isValidPassword();
+                if(result == inputPass){
+                    msg.innerHTML = "비밀번호가 일치합니다.";
+                    msg.style.color = "green";
+                }else{
+                    msg.innerHTML = "비밀번호가 일치하지 않습니다."
+                    msg.style.color = "red";
+                }
+        
+                // msg.innerHTML = "사용가능한 비밀번호입니다";
+                // msg.style.color = "green";
+            }else{
+                msg.innerHTML = "비밀번호가 일치하지 않습니다."
+                msg.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>

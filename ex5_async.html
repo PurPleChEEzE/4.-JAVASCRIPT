@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- async/await -->
+
+
+    <script>
+
+        function consolePrint(){
+            return new Promise(function(resolve, reject){
+                setTimeout(function(){
+                    const user = {name : '홍길동', age:19};
+                    resolve(user);
+                }, 2000)
+            })
+        }
+
+        consolePrint()
+            .then(result => console.log(result))
+            .catch(error => console.log(error));
+
+        console.log("함수 호출 완료");
+
+
+        async function getPrint(){
+            try{
+                const result = await consolePrint();
+                console.log("실행 완료 : " + result);
+            }catch(error){
+                console.log("에러 발생 : " + error);
+            }
+
+            console.log("코드 실행");
+        }
+        getPrint();
+        console.log("코드 실행");
+
+        //1. 콜백함수를 이용해 1초 뒤 사용자의 이름을 출력하는 코드 
+        function getUserData(callback){
+            setTimeout(() => {
+                const userName = "홍길동";
+                callback(userName);
+            }, 1000);
+        }
+
+        getUserData(function(result){
+            console.log(result);
+        })
+
+        //2. 프로미스를 이용해 성공할 경우 data 출력, 실패할 경우 "실패했습니다." 출력
+        //성공 실패 여부는 success 변수의 값에 따라 변경
+        function fetchData(successCheck){
+            return new Promise((resolve, reject) => {
+                const data = "이것은 데이터입니다. ";
+
+                if(successCheck){
+                    resolve(data);
+                }else{
+                    reject("실패했습니다");
+                    //reject -> catch로 빠짐
+                }
+            })
+        }
+        
+
+        fetchData(true)
+        .then(result => console.log(result))
+        .catch(error => console.log(error));
+
+        //3. 홀수일경우 then으로 받는 결과를 "홀수입니다"
+        //짝수일경우 catch로 받는 결과를 "짝수입니다" 출력
+        function checkOddEven(num){
+            return new Promise((resolve, reject) => {
+                const Odd = "이것은 홀수입니다";
+
+                if(num%2==1){
+                    resolve(Odd);
+                }else{
+                    reject("이것은 짝수입니다");
+                }
+            })
+        }
+
+        checkOddEven(6)
+        .then(result => console.log(result))
+        .catch(error => console.log(error));
+
+        function getUserByEmail(){
+            const email = "test@example.com";
+            console.log("return 전")
+            return new Promise(function(resolve, reject){
+                
+                setTimeout(() => {
+                    console.log("setTImeout 전")
+                    resolve(email);
+                    console.log("setTimeout 후")
+                }, 2000);
+                
+            
+            })
+        }
+            // getUserByEmail()
+            // .then(result => console.log(result))
+            // .catch(error => console.log(error));
+
+        async function emailPrint(){
+            try{
+                console.log("await 실행 전");
+                const go = await getUserByEmail();
+                console.log("await 실행 후 : " + go);
+
+            }catch(error){
+                console.log("에러 발생 : " + error);
+            }
+        }
+        console.log("------")
+        console.log("함수 호출 전");
+        emailPrint();
+        console.log("함수 호출 후");
+    </script>
+</body>
+</html>
