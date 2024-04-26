@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <button onclick="getSum()">합 구하기</button>
+    <script>
+
+        // 문제 1: 주어진 숫자 배열에서 10보다 큰 수만을 찾아 그 합계를 반환하는 함수를 작성하세요.
+        const numbers = [1, 12, 5, 3, 18, 13];
+        let sum = 0;
+
+        function getSum(){
+            for(let i = 0; i<numbers.length; i++){
+                if(numbers[i] > 10){
+                    sum =sum + numbers[i];
+                }
+            }
+            console.log(sum)
+            alert("합 : " + sum);
+        }
+
+    </script>
+<hr>
+
+    <!-- 
+        문제 2: 버튼을 클릭할 때 마다 span의 텍스트가 1씩 증가하는 코드를 작성하세요.
+    -->
+    <button onclick="spanNum()">증가</button>
+    <span id="spanUp">0</span>
+    <script>
+        let count = 0;
+        function spanNum(){
+            const spanUp = document.getElementById("spanUp");
+            count = count+1;
+            spanUp.innerHTML = count;
+        }
+
+    </script>
+<hr>
+
+    <!-- 
+        문제 3 : input에 입력 후 버튼을 클릭할 때 입력한 값에 따라 div 요소에 색상을 적용하세요.
+        - r 입력 시 : div 요소를 red 색상으로 변경
+        - b 입력 시 : div 요소를 blue 색상으로 변경
+        - g 입력 시 : div 요소를 green 색상으로 변경
+
+        * 변경된 색상의 기록을 ul요소 안에 리스트로 기록해야 합니다.
+            - 색상이 변경될 때 마다 ul의 자식요소로 li 태그가 생성 됩니다.
+            - li 태그는 변경된 색상을 출력합니다. (ex. red, blue, green)
+    -->
+    <input type="text" id="input-color" placeholder="색상을 입력하세요.">
+    <button id="color-btn">변경</button>
+    <div id="result-color" style="width:200px; height: 200px; background-color: antiquewhite;"> </div>
+
+    <ul></ul>
+
+    <script>
+        const inputColor = $("#input-color");
+        const colorBtn = $("#color-btn");
+        const resultColor = $("#result-color");
+
+        colorBtn.on('click', function(){
+            console.log(inputColor.val());
+            if(inputColor.val() == "r"){
+                resultColor
+                .val("red")
+                .css("backgroundColor", "red");
+            }else if(inputColor.val() == "b"){
+                resultColor
+                .val("blue")
+                .css("backgroundColor", "blue");
+            }else if(inputColor.val() == "g"){
+                resultColor
+                .val("green")
+                .css("backgroundColor", "green");
+            }
+            
+            const ulElement = $("ul")
+            .append(resultColor.val() + " ") ;
+            
+            inputColor.val("");
+        })
+
+    </script>
+
+
+</body>
+</html>

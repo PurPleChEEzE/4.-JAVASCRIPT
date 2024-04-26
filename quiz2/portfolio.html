@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>간단한 홈페이지</title>
+  <link rel="stylesheet" href="./main.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  
+</head>
+<body>
+  <header>
+    <h1>나의 홈페이지</h1>
+    <div class="login-signup">
+      <a href="login.html">로그인</a>
+      <a href="register.html">회원가입</a>
+    </div>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="home.html">홈</a></li>
+      <li><a href="introduce.html">소개</a></li>
+      <li><a href="portfolio.html">포트폴리오</a></li>
+      <li class="menu-item">
+        <a href="#">게시판</a>
+        <div class="submenu">
+          <a href="news.html">뉴스 게시판</a>
+          <a href="board.html">자유 게시판</a>
+        </div>
+      </li>
+      <li><a href="contact.html">연락하기</a></li>
+    </ul>
+  </nav>
+
+  <section>
+    <h2>포트폴리오</h2>
+
+    <div class="project">
+      <div class="input-area" id="input-area">
+        <input type="text" id="project-title" placeholder="프로젝트 제목 입력">
+        <textarea id="project-description" placeholder="프로젝트 설명 입력"></textarea>
+        <button id="add-project-button">새로운 프로젝트 추가하기</button>
+        <!-- 제목 : h3 -->
+        <!-- 내용 : p -->
+      </div>
+    </div>
+    
+    <script>
+      // <포트폴리오>
+      //   - 제목은 최대 100글자까지 가능
+      //   - 제목이 100글자를 초과하면 alert "제목이 너무 깁니다."
+
+      //   * 공통 : 비어있는 문자 불가(새로운 프로젝트 추가하기 버튼 클릭 시)
+      //   - 제목이 비어있다면 alert "제목을 입력해주세요"
+      //   - 설명이 비어있다면 alert "설명을 입력해주세요."
+      // const btn = document.getElementById("add-project-button");
+      $("#add-project-button").on('click', function() {
+        const projectTitle = $("#project-title"); // 제목
+        const projectDescription = $("#project-description"); // 설명
+        const inputArea = $("#input-area"); // div 태그
+
+        if(projectTitle.val().length > 100) {
+          alert("제목이 너무 깁니다.");
+        } else if(projectTitle.val() === "") {
+          alert("제목을 입력해주세요.");
+        } else if(projectDescription.val() === "") {
+          alert("내용을 입력해주세요.");
+        }
+
+        // const h3Element = document.createElement("h3"); // h3 요소 생성
+        const h3Element =  $("<h3></h3>")
+        .html(projectTitle.val()) // h3 요소 생성
+        // h3Element.innerHTML = projectTitle.value;
+
+        // const pDes = document.createElement("p") // p 요소 생성
+        const pDes = $("<p></p>") // p 요소 생성
+        .html(projectDescription.val())
+        // pDes.innerHTML = projectDescription.value;
+
+        inputArea.append(h3Element);
+        inputArea.append(pDes);
+      })
+
+    </script>
+  </section>
+
+  <footer>
+    <p>저의 홈페이지에 방문해 주셔서 감사합니다.</p>
+  </footer>
+</body>
+</html>

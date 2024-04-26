@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>간단한 홈페이지</title>
+  <link rel="stylesheet" href="./main.css">
+  <style>
+    #message-counter {
+      margin-top: 0px;
+      float: right;
+    }
+  </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>나의 홈페이지</h1>
+    <div class="login-signup">
+      <a href="login.html">로그인</a>
+      <a href="register.html">회원가입</a>
+    </div>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="home.html">홈</a></li>
+      <li><a href="introduce.html">소개</a></li>
+      <li><a href="portfolio.html">포트폴리오</a></li>
+      <li class="menu-item">
+        <a href="#">게시판</a>
+        <div class="submenu">
+          <a href="news.html">뉴스 게시판</a>
+          <a href="board.html">자유 게시판</a>
+        </div>
+      </li>
+      <li><a href="contact.html">연락하기</a></li>
+    </ul>
+  </nav>
+
+  <section id="contact">
+    <h2>연락하기</h2>
+    <p>문의사항이나 연락하고 싶은 내용을 작성하세요.</p>
+    <form >
+        <label for="name">이름:</label>
+        <input type="text" id="name" name="name" onkeyup="checkName()" required>
+        <span id="name-msg"></span>
+
+        <label for="email">이메일:</label>
+        <input type="email" id="email" name="email" onkeyup="checkEmail()" required>
+        <span id="email-msg"></span>
+
+        <label for="message">메시지:</label>
+        <textarea id="message" name="message" rows="4" onkeyup="checkMessage()" required></textarea>
+        <p id="message-counter">0/500</p>
+        
+        <button type="submit">전송</button>
+    </form>
+  </section>
+
+  <script>
+    // <연락하기>
+    // - 이름 : 한글만 가능
+    function checkName() {
+      const name = $("#name");
+
+      // $("#name").css("backgroundColor", "green")
+      
+      
+
+      const msg = $("#name-msg");
+      const regx = /^[가-힣]+$/;
+
+      if(regx.test(name.val())) {
+        msg.html("사용 가능합니다.");
+        $("#name")
+        .css("backgroundColor", "green");
+      }else if(name.val() === ""){
+        msg.html("이름을 입력해주세요.")
+        $("#name")
+        .css("backgroundColor", "white");
+      }else {
+        msg.html("이름은 한글만 가능합니다.");
+        $("#name")
+        .css("backgroundColor", "firebrick");
+
+      }
+    }
+    
+    // - 이메일 : 이메일 주소가 유효한지 확인   ex) test@test.com
+    function checkEmail() {
+      const email = $("#email");
+      const msg = $("#email-msg");
+      const regx = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/;
+
+      if(regx.test(email.val())) {
+        msg.html("사용 가능합니다.");
+        $("#email")
+        .css("backgroundColor", "green");
+      }else if(email.val() === ""){
+        msg.html("이메일을 입력해주세요.")
+        $("#email")
+        .css("backgroundColor", "white");
+      } else {
+        // msg.innerHTML = "이메일 양식이 유효하지 않습니다.";
+        msg.html("이메일 양식이 유효하지 않습니다.")
+        $("#email")
+        .css("backgroundColor", "firebrick");
+      }
+    }
+
+    // - 메시지 : 사용자가 입력한 글자를 실시간으로 업데이트
+    function checkMessage() {
+      // ABCD
+      const message = $("#message");
+      const counter = $("#message-counter");
+
+      // 0/500
+      counter.html(message.val().length + "/500");
+      // A
+      console.log(message);
+
+      // 최대 500글자까지 사용 가능
+      if(message.val().length > 500) {
+        console.log("if문 들어옴");
+        message.val() = message.val().substring(0, 500);
+      } 
+
+    }
+
+    // * 공통 : 비어있는 문자 불가(전송 버튼 클릭 시)
+    // - 이름이 비어있다면 alert "이름을 입력해주세요"
+    // - 이메일이 비어있다면 alert "이메일을 입력해주세요."
+    // - 메시지가 비어있다면 alert "메시지를 입력해주세요."
+  </script>
+
+  <footer>
+    <p>저의 홈페이지에 방문해 주셔서 감사합니다.</p>
+  </footer>
+</body>
+</html>
